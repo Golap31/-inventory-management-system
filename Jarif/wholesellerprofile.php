@@ -49,11 +49,11 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
         <div>
           <p class="font-medium">Email:</p>
-          <p>tasnuva@wholesaleco.com</p>
+          <p>jarifovi@wholesale.com</p>
         </div>
         <div>
           <p class="font-medium">Phone:</p>
-          <p>+1 (555) 123-4567</p>
+          <p>+1 (+880) 1880275244</p>
         </div>
         <div class="md:col-span-2">
           <p class="font-medium">Address:</p>
