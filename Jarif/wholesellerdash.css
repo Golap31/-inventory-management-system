@@ -100,12 +100,10 @@ body {
   font-weight: bold;
 }
 
-/* Color overrides */
 .card:nth-child(1) p { color: #2563eb; } /* Blue */
 .card:nth-child(2) p { color: #eab308; } /* Yellow */
 .card:nth-child(3) p { color: #10b981; } /* Green */
 
-/* Recent Orders Table */
 .recent-orders {
   background-color: #fff;
   padding: 1.5rem;
@@ -141,7 +139,7 @@ body {
   color: #eab308;
 }
 
-/* Inventory Overview */
+
 .inventory-overview {
   background-color: #fff;
   padding: 1.5rem;
@@ -168,7 +166,7 @@ body {
   font-weight: bold;
 }
 
-/* Apply background image to the entire page */
+
 body {
 background-image: url('bg.webp'); /* Replace with your image path */
 background-size: cover; /* Makes the image cover the whole screen */
@@ -177,7 +175,7 @@ background-attachment: fixed; /* Keeps the background fixed while scrolling */
 background-repeat: no-repeat; /* Prevents the background from repeating */
 }
 
-/* Optional: You can add a background overlay if you want text to be more readable */
+\page-break>
 body::before {
 content: '';
 position: absolute;
