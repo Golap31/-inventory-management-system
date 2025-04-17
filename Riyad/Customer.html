@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Dashboard - PHLI Management System</title>
+  <link rel="stylesheet" href="Customer.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="dashboard-header" id="dashboardHeader">
+    <h1>Welcome, Riyad</h1>
+    <div class="user-settings">
+      <button onclick="showProfile()">Profile</button>
+      <button>Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+
+    <div id="customerDashboard">
+
+      <section class="summary-section">
+        <div class="card">Total Inventory: <span>500 kg</span></div>
+        
+        <div class="card">Recent Order: <span>#ORD1023</span></div>
+        <div class="card">Expiry Alerts: <span>2 Items</span></div>
+      </section>
+
+      <section class="inventory-section">
+        <h2>Inventory Overview</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Harvest Date</th>
+              <th>Expiry Date</th>
+              <th>Storage Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tomatoes</td>
+              <td>250 kg</td>
+              <td>2025-04-01</td>
+              <td>2025-04-15</td>
+              <td>Cold Storage</td>
+              <td>Fresh</td>
+            </tr>
+            <tr>
+              <td>Potatoes</td>
+              <td>150 kg</td>
+              <td>2025-03-20</td>
+              <td>2025-05-10</td>
+              <td>Dry Storage</td>
+              <td>Fresh</td>
+            </tr>
+            <tr>
+              <td>Onions</td>
+              <td>100 kg</td>
+              <td>2025-03-20</td>
+              <td>2025-05-10</td>
+              <td>Dry Storage</td>
+              <td>Fresh</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="chart-section">
+        <h2>Top Ordered Items</h2>
+        <canvas id="lossChart" width="400" height="200"></canvas>
+      </section>
+
+
+      <section class="orders-section">
+        <h2>Your Orders</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Status</th>
+              <th>Delivery Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#ORD1023</td>
+              <td>Tomatoes</td>
+              <td>50 kg</td>
+              <td>Delivered</td>
+              <td>2025-04-10</td>
+            </tr>
+            <tr>
+              <td>#ORD1024</td>
+              <td>Onions</td>
+              <td>25 kg</td>
+              <td>Pending</td>
+              <td>2025-04-15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="place-order-section">
+        <h2>Place New Order</h2>
+        <form class="order-form">
+          <label for="product">Product:</label>
+          <select id="product" name="product" required>
+            <option value="">-- Select Product --</option>
+            <option value="Tomatoes">Tomatoes</option>
+            <option value="Potatoes">Potatoes</option>
+            <option value="Onions">Onions</option>
+          </select>
+
+          <label for="quantity">Quantity (kg):</label>
+          <input type="number" id="quantity" name="quantity" min="1" required />
+
+          <label for="delivery-date">Preferred Delivery Date:</label>
+          <input type="date" id="delivery-date" name="delivery-date" required />
+
+          <button type="submit">Place Order</button>
+        </form>
+      </section>
+
+      <section class="track-order-section">
+        <h2>Track Your Order</h2>
+        <form class="track-form">
+          <label for="track-id">Enter Order ID:</label>
+          <input type="text" id="track-id" name="track-id" placeholder="#ORD1023" required />
+          <button type="submit">Track Order</button>
+        </form>
+
+   
+        <div class="tracking-result">
+          <h3>Status for Order <span id="track-order-id">#ORD1023</span>:</h3>
+          <p><strong>Status:</strong> In Transit</p>
+          <p><strong>Expected Delivery:</strong> April 15, 2025</p>
+        </div>
+      </section>
+
+      <section class="alerts-section">
+        <h2>Alerts & Recommendations</h2>
+        <ul>
+          <li>⚠️ 10 kg of Tomatoes expiring in 3 days.</li>
+          <li>✅ Move Potatoes to dry storage for longer shelf life.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div id="customerProfile" style="display:none;">
+      <header class="dashboard-header" id="profileHeader" style="display:none;">
+        <h1>Customer Profile</h1>
+        <div class="user-settings">
+          <button onclick="showDashboard()">Back to Dashboard</button>
+        </div>
+      </header>
+
+      <main class="dashboard-container">
+        <section class="profile-section">
+          <h2>Customer Details</h2>
+          <div class="profile-card">
+            <table class="profile-table">
+              <tr>
+                <th>Name:</th>
+                <td id="custName">Md. Riyad Hasan</td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td id="custEmail">hassanriyad666@gmail.com</td>
+              </tr>
+              <tr>
+                <th>Phone:</th>
+                <td id="custPhone">01906102858</td>
+              </tr>
+              <tr>
+                <th>Address:</th>
+                <td id="custAddress">Sector - 8, Uttara, Dhaka-1230</td>
+              </tr>
+            </table>
+            <button onclick="toggleEditForm()">Edit Profile</button>
+          </div>
+        </section>
+
+        <section class="edit-profile-section" id="editProfileForm" style="display:none;">
+          <h2>Edit Your Profile</h2>
+          <form class="order-form" onsubmit="updateProfile(event)">
+            <label for="edit-name">Name:</label>
+            <input type="text" id="edit-name" value="Md. Riyad Hasan" />
+
+            <label for="edit-email">Email:</label>
+            <input type="email" id="edit-email" value="hassanriyad666@gmail.com" />
+
+            <label for="edit-phone">Phone:</label>
+            <input type="text" id="edit-phone" value="01906102858" />
+
+            <label for="edit-address">Address:</label>
+            <input type="text" id="edit-address" value="Sector - 8, Uttara, Dhaka-1230" />
+
+            <button type="submit">Save Changes</button>
+          </form>
+        </section>
+
+        <section class="summary-section">
+          <div class="card">Total Orders: <span id="order-count">8</span></div>
+          <div class="card">Last Order: <span>#ORD1024</span></div>
+          <div class="card">Avg. Rating: <span>4.6⭐</span></div>
+          <div class="card">Membership: <span>Gold</span></div>
+        </section>     
+
+        <section class="review-section">
+          <h2>Leave a Review</h2>
+          <form class="order-form">
+            <label for="review-text">Your Feedback:</label>
+            <textarea id="review-text" rows="4" placeholder="Share your experience..." required></textarea>
+
+            <label for="review-rating">Rating:</label>
+            <select id="review-rating" required>
+              <option value="">-- Select Rating --</option>
+              <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+              <option value="4">⭐⭐⭐⭐ - Good</option>
+              <option value="3">⭐⭐⭐ - Average</option>
+              <option value="2">⭐⭐ - Poor</option>
+              <option value="1">⭐ - Very Poor</option>
+            </select>
+
+            <button type="submit">Submit Review</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+  </main>
+
+  <script>
+    function showProfile() {
+      document.getElementById("dashboardHeader").style.display = "none";
+      document.getElementById("customerDashboard").style.display = "none";
+      document.getElementById("customerProfile").style.display = "block";
+      document.getElementById("profileHeader").style.display = "block";
+    }
+
+    function showDashboard() {
+      document.getElementById("profileHeader").style.display = "none";
+      document.getElementById("customerProfile").style.display = "none";
+      document.getElementById("customerDashboard").style.display = "block";
+      document.getElementById("dashboardHeader").style.display = "flex";
+    }
+
+    function toggleEditForm() {
+      const form = document.getElementById('editProfileForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function updateProfile(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('edit-name').value;
+      const email = document.getElementById('edit-email').value;
+      const phone = document.getElementById('edit-phone').value;
+      const address = document.getElementById('edit-address').value;
+
+      document.getElementById('custName').innerText = name;
+      document.getElementById('custEmail').innerText = email;
+      document.getElementById('custPhone').innerText = phone;
+      document.getElementById('custAddress').innerText = address;
+
+      alert("Profile updated successfully!");
+      toggleEditForm();
+    }
+
+    const ctx = document.getElementById('lossChart').getContext('2d');
+    const topOrdersChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Tomatoes', 'Potatoes', 'Onions'],
+        datasets: [{
+          label: 'Ordered Quantity (kg)',
+          data: [150, 100, 50],
+          backgroundColor: ['#34d399', '#fbbf24', '#60a5fa'],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true
+          },
+          title: {
+            display: true,
+            text: 'Top Ordered Items',
+            font: {
+              size: 18
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Quantity (kg)'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('farm.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #30c70fec;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+  
+  .user-settings button {
+    margin-left: 10px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #040404;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .user-settings button:hover {
+    background-color: #e2eaff;
+  }
+  
+  .dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .summary-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+    min-width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 18px;
+  }
+  
+  .card span {
+    display: block;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2d6cdf;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  th {
+    background-color: #f0f4f8;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .inventory-section,
+  .chart-section,
+  .orders-section,
+  .place-order-section,
+  .track-order-section,
+  .alerts-section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #000000;
+  }
+  
+  /* Alerts */
+  .alerts-section ul {
+    list-style-type: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .alerts-section li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .alerts-section li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Charts */
+  .chart-section canvas {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Forms */
+  .order-form,
+  .track-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+  }
+  
+  .order-form label,
+  .track-form label {
+    font-weight: 600;
+  }
+  
+  .order-form input,
+  .track-form input,
+  .order-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .order-form button,
+  .track-form button {
+    padding: 12px;
+    background-color: #33d90eec;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .order-form button:hover,
+  .track-form button:hover {
+    background-color: #2bac0e;
+  }
+  
+  .tracking-result {
+    margin-top: 20px;
+    background-color: #fefefe;
+    padding: 20px;
+    border-left: 5px solid #2edc07ec;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  
+  .profile-card button {
+    background-color: #33d90eec; 
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 16px;
+  }
+  
+  .profile-card button:hover {
+    background-color: #2bac0e; 
+    transform: scale(1.03);
+  }
+  
+  
