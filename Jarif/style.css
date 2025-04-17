@@ -1,9 +1,0 @@
-.profile-img {
-    width: 10px;
-    height: 10px;
-    border-radius: 9999px; /* fully rounded */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* soft shadow */
-    object-fit: cover;
-    border: 3px solid #3b82f6; /* Tailwind blue-500 */
-  }
-  \end{code}
