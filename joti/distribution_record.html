@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales & Distribution Integration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Inventory System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sales & Distribution</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="btn btn-outline-danger" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container py-4">
+    <h2 class="mb-4 text-center">Sales & Distribution Integration</h2>
+
+    <!-- Sales Entry Panel -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">Sales Entry</div>
+      <div class="card-body">
+        <form>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Select Produce Type</label>
+              <select class="form-select">
+                <option>Tomato</option>
+                <option>Mango</option>
+                <option>Cabbage</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Batch ID</label>
+              <input type="text" class="form-control" placeholder="e.g. 2025TOM001">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Sale Date</label>
+              <input type="date" class="form-control">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Quantity Sold (kg/units)</label>
+              <input type="number" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Buyer/Distributor Name</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Distribution Channel</label>
+              <select class="form-select">
+                <option>Local Market</option>
+                <option>Export</option>
+                <option>Supermarket</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Selling Price per Unit</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Additional Notes</label>
+              <textarea class="form-control" rows="2"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success">Save Sale Record</button>
+          <button type="reset" class="btn btn-secondary ms-2">Add Another</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Distribution Summary Table -->
+    <div class="card mb-4">
+      <div class="card-header bg-secondary text-white">Distribution Summary</div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Batch ID</th>
+              <th>Produce Type</th>
+              <th>Quantity Sold</th>
+              <th>Buyer</th>
+              <th>Distribution Channel</th>
+              <th>Sale Date</th>
+              <th>Price/Unit</th>
+              <th>Total Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025TOM001</td>
+              <td>Tomato</td>
+              <td>120 kg</td>
+              <td>FreshMart Ltd.</td>
+              <td>Supermarket</td>
+              <td>2025-04-19</td>
+              <td>$1.20</td>
+              <td>$144.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Analytics & Insights -->
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white">Analytics & Insights</div>
+      <div class="card-body">
+        <div class="row text-center">
+          <div class="col-md-4 mb-3">
+            <h6>Sales Volume Over Time</h6>
+            <div class="bg-light border p-3">[Line Chart Placeholder]</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6>Revenue by Distribution Channel</h6>
+            <div class="bg-light border p-3">[Bar Graph Placeholder]</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6>Distribution Proportions</h6>
+            <div class="bg-light border p-3">[Pie Chart Placeholder]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smart Alerts -->
+    <div class="card mb-4">
+      <div class="card-header bg-danger text-white">Smart Alerts</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item text-danger">⚠️ Batch 2025MNG003 sold after shelf life – spoilage risk.</li>
+          <li class="list-group-item text-warning">🔄 Batch 2025CAB002 has 80kg remaining and expires in 2 days. Consider reallocation.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

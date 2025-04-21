@@ -1,32 +1,3 @@
-<?php
-// db.php - Database connection
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$database = 'ims';
-
-$conn = new mysqli($host, $user, $password, $database);
-
-if ($conn->connect_error) {
-    die('Connection Failed: ' . $conn->connect_error);
-}
-
-// Sample queries (you can adjust table/column names accordingly)
-function getCount($conn, $table) {
-    $result = $conn->query("SELECT COUNT(*) as total FROM $table");
-    $row = $result->fetch_assoc();
-    return $row['total'];
-}
-
-$totalItems = getCount($conn, 'items');
-$totalCategories = getCount($conn, 'categories');
-$totalElements = getCount($conn, 'elements');
-$totalSales = getCount($conn, 'sales');
-$totalProducts = getCount($conn, 'products');
-$paidOrders = getCount($conn, 'orders WHERE status = "paid"');
-$unpaidOrders = getCount($conn, 'orders WHERE status = "unpaid"');
-$totalMembers = getCount($conn, 'members');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
