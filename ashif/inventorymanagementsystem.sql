@@ -18,3 +18,6 @@ VALUES
 ('Spinach', 'BATCH003', '2025-04-15', 'Refrigerator Unit 3', 'Spoilage', 'Leaves turning yellow', NOW(), '2025-04-20', 'Alert Sent'),
 ('Apples', 'BATCH004', '2025-04-05', 'Cold Storage A', 'Physical Damage', 'Cracks on the skin observed', NOW(), '2025-05-01', 'Resolved'),
 ('Strawberries', 'BATCH005', '2025-04-16', 'Warehouse C', 'Spoilage', 'Soft patches and foul smell', NOW(), '2025-04-22', 'Pending');
+
+ALTER TABLE LossAnalysis 
+ADD reported_by VARCHAR(100) AFTER issue_description;
