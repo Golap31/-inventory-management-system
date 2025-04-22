@@ -21,3 +21,14 @@ VALUES
 
 ALTER TABLE LossAnalysis 
 ADD reported_by VARCHAR(100) AFTER issue_description;
+
+CREATE TABLE NotificationLog (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    loss_id INT NOT NULL,
+    notification_type ENUM('Email', 'Push', 'Banner', 'SMS') NOT NULL,
+    status ENUM('Sent', 'Failed') DEFAULT 'Sent',
+    message TEXT,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (loss_id) REFERENCES LossAnalysis(id)
+);
+g
