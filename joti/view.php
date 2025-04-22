@@ -1,6 +1,6 @@
 <?php
 
-include "ims.php";
+include "db.php";
 
 $sql = "SELECT ID, `first Name` as fname, `Last Name` as lastname, Area, City, `Postal Code` as pc,`Phone Number` as phone, Gender FROM farmers";
 
