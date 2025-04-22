@@ -26,6 +26,7 @@
                     <input type = "submit"  name = "submitPassword" value= "SUBMIT" >
                 </form>
                 <a href="register.php" class= "signInMessage" >Need an account? Sign up here</a>
+                <a href="Dashboard.html" class= "Login" >Go to Dashboard page</a>
                     
 
             </div> 

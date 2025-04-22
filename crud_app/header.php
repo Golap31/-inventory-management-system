@@ -10,3 +10,5 @@ sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossor
 <body>
     <h1 id = "main_title"> Detailed Inventory Tracking of Products</h1>
     <div class="container">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -6,3 +6,21 @@
     letter-spacing: 2px;
     font-weight:500;
 }
+
+.header h2{
+    float: left;
+}   
+.header button{
+    float: right;
+}   
+.container{
+    margin-top: 50px;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
