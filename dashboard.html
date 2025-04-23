@@ -48,7 +48,8 @@
             width: 250px;
             background-color: #d32f2f;
             color: white;
-            height: 100vh;
+            height: calc(100vh - 50px);
+            top: 50px;
             padding-top: 80px;
             position: fixed;
             top: 0;
@@ -94,6 +95,29 @@
         .teal { background: #009688; }
         .yellow { background: #FFC107; }
         .gray { background: #607D8B; }
+        .sidebar ul {
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    margin: 0;
+    padding: 0;
+}
+.sidebar ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    
+}
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
     </style>
 </head>
 <body>
@@ -109,19 +133,20 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <ul>
-            <li>Dashboard</li>
-            <li>Items</li>
-            <li>Category</li>
-            <li>Warehouse</li>
-            <li>Elements</li>
-            <li>Products</li>
-            <li>Orders</li>
-            <li>Members</li>
-            <li>Permissions</li>
-            <li>Company</li>
-            <li>Logout</li>
+            <li><a href="dashboard.html" style="color: white; text-decoration: none;">Dashboard</a></li>
+            <!-- <li><a href="items.html" style="color: white; text-decoration: none;">Items</a></li> -->
+            <!-- <li><a href="category.html" style="color: white; text-decoration: none;">Category</a></li> -->
+            <li><a href="saad/inventory-manager-dashboard.html" style="color: white; text-decoration: none;">Inventory</a></li>
+            <!-- <li><a href="elements.html" style="color: white; text-decoration: none;">Elements</a></li>
+            <li><a href="products.html" style="color: white; text-decoration: none;">Products</a></li> -->
+            <!-- <li><a href="orders.html" style="color: white; text-decoration: none;">Orders</a></li> -->
+            <li><a href="joti/distribution_record.html" style="color: white; text-decoration: none;">Sales & Distribution</a></li>
+            <li><a href="Jarif/wholesellerdashboard.html" style="color: white; text-decoration: none;">Wholeseller Dashboard</a></li>
+            <li><a href="ashif/vendordashboard.html" style="color: white; text-decoration: none;">Vendor</a></li>
+            <li><a href="home.html" style="color: white; text-decoration: none;">Logout</a></li>
         </ul>
     </div>
+    
 
     <!-- Dashboard -->
     <div class="dashboard">
