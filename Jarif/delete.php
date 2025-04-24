@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root"; // Change this to your MySQL username
 $password = ""; // Change this to your MySQL password
-$database = "ims"; // Change this to your database name
+$database = "inventorymanagementsystem"; // Change this to your database name
 
 // Create database connection
 $conn = new mysqli($host, $username, $password, $database);
