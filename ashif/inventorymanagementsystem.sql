@@ -39,3 +39,4 @@ VALUES
 (3, 'Email', 'Sent', 'Critical Spoilage Alert: Spinach expiring on 2025-04-20.'),
 (4, 'Banner', 'Sent', 'Notice: Apples have damage but are safe till 2025-05-01.'),
 (5, 'SMS', 'Failed', 'Urgent: Strawberries show spoilage and are near expiry.');
+
