@@ -6,21 +6,23 @@
   <link rel="stylesheet" href="Preventive_measure.css">
 </head>
 <body>
-  <h2>Add Preventive Measure</h2>
-  <form action="Preventive_measure.php" method="POST">
-    <label for="measure_name">Measure Name:</label><br>
-    <input type="text" id="measure_name" name="measure_name" required><br><br>
+  <div class="container">
+    <h2>Add Preventive Measure</h2>
+    <form action="Preventive_measure.php" method="POST">
+      <label for="measure_name">Measure Name:</label><br>
+      <input type="text" id="measure_name" name="measure_name" required><br><br>
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="4" required></textarea><br><br>
+      <label for="description">Description:</label><br>
+      <textarea id="description" name="description" rows="4" required></textarea><br><br>
 
-    <label for="implementation_date">Implementation Date:</label><br>
-    <input type="date" id="implementation_date" name="implementation_date" required><br><br>
+      <label for="implementation_date">Implementation Date:</label><br>
+      <input type="date" id="implementation_date" name="implementation_date" required><br><br>
 
-    <label for="responsible_person">Responsible Person:</label><br>
-    <input type="text" id="responsible_person" name="responsible_person" required><br><br>
+      <label for="responsible_person">Responsible Person:</label><br>
+      <input type="text" id="responsible_person" name="responsible_person" required><br><br>
 
-    <input type="submit" value="Submit">
-  </form>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 </body>
 </html>
