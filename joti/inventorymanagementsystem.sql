@@ -174,6 +174,25 @@ CREATE TABLE `warehouse_t` (
   `Date Time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE inventory (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produce_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    harvest_date DATE NOT NULL,
+    storage_location VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS loss_records (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produce_name VARCHAR(255) NOT NULL,
+    lost_quantity INT NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    stage VARCHAR(100) NOT NULL,
+    loss_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 --
 -- Indexes for dumped tables
 --
