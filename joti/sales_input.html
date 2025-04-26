@@ -109,19 +109,20 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="sidebar">
-  <a href="#">Home</a>
-  <a href="#">Sales Input</a>
-  <a href="#">Reports</a>
-  <a href="#">Products</a>
-  <a href="#">Settings</a>
+  <!-- <a href="dashboard.html">Dashboard</a>
+  <a href="joti/sales_input.html">Sales Input</a>
+  <a href="logout.html">Log Out</a> -->
+
 </div>
 
 <div class="main-content">
   <div class="container">
     <h2>Sales Input Form</h2>
+
     <form id="salesForm">
       <label for="product">Product Name:</label>
       <input type="text" id="product" name="product" required>
@@ -182,7 +183,28 @@
     const totalAmount = (quantity * price).toFixed(2);
     const dueAmount = totalAmount; // For now, due = total
 
-    // Create new table row
+    // 1️⃣ SEND data to server using AJAX (background)
+    const formData = new FormData();
+    formData.append('product', product);
+    formData.append('quantity', quantity);
+    formData.append('price', price);
+    formData.append('customer', customer);
+    formData.append('date', date);
+
+    fetch('save_sales.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Server response:', data);
+      alert("Sale saved successfully!");
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+    // 2️⃣ Update table instantly (frontend)
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
       <td>${purchaseId}</td>
