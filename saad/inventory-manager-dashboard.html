@@ -3,11 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <title>Inventory Manager Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       background-color: #f4f6f8;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #2c3e50;
+      height: 100vh;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: width 0.3s;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+      white-space: nowrap;
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .sidebar.collapsed a span {
+      display: none;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background-color: #1a242f;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 240px;
+      width: calc(100% - 240px);
+      transition: margin-left 0.3s, width 0.3s;
+    }
+
+    .collapsed + .main-content {
+      margin-left: 80px;
+      width: calc(100% - 80px);
     }
 
     header {
@@ -15,6 +81,19 @@
       color: #fff;
       padding: 20px;
       text-align: center;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #1a242f;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
     }
 
     .container {
@@ -80,100 +159,133 @@
 </head>
 <body>
 
-<header>
-  <h1>📦 Inventory Manager Dashboard</h1>
-</header>
-
-<div class="container">
-
-  <div class="card">
-    <h2>Real-Time Storage Conditions (Simulated)</h2>
-    <p>🌡️ Temperature: <strong>12°C</strong></p>
-    <p>💧 Humidity: <strong>85%</strong></p>
-  </div>
-
-  <div class="card">
-    <h2>⚠️ Expiring Soon</h2>
-    <div class="alert">
-      <ul>
-        <li>Tomatoes (Harvested: 2025-04-10)</li>
-        <li>Spinach (Harvested: 2025-04-09)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>📋 Inventory List</h2>
-    <table>
-      <tr>
-        <th>Produce</th>
-        <th>Quantity</th>
-        <th>Harvest Date</th>
-        <th>Storage Location</th>
-      </tr>
-      <tr>
-        <td>Tomatoes</td>
-        <td>100 kg</td>
-        <td>2025-04-10</td>
-        <td>Cold Room A</td>
-      </tr>
-      <tr>
-        <td>Spinach</td>
-        <td>50 kg</td>
-        <td>2025-04-09</td>
-        <td>Cold Room B</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2>❌ Loss Records</h2>
-    <table>
-      <tr>
-        <th>Produce</th>
-        <th>Quantity Lost</th>
-        <th>Reason</th>
-        <th>Stage</th>
-        <th>Date</th>
-      </tr>
-      <tr>
-        <td>Bananas</td>
-        <td>20 kg</td>
-        <td>Spoilage</td>
-        <td>Storage</td>
-        <td>2025-04-14</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2>➕ Add New Inventory</h2>
-    <form>
-      <input type="text" placeholder="Produce Name" required>
-      <input type="number" placeholder="Quantity (kg)" required>
-      <input type="date" required>
-      <input type="text" placeholder="Storage Location" required>
-      <button type="submit">Add Inventory</button>
-    </form>
-  </div>
-
-  <div class="card">
-    <h2>➖ Record Loss</h2>
-    <form>
-      <input type="text" placeholder="Produce Name" required>
-      <input type="number" placeholder="Lost Quantity (kg)" required>
-      <input type="text" placeholder="Reason (e.g., spoilage)" required>
-      <select required>
-        <option value="">-- Select Stage --</option>
-        <option value="Harvesting">Harvesting</option>
-        <option value="Storage">Storage</option>
-        <option value="Transportation">Transportation</option>
-      </select>
-      <button type="submit">Record Loss</button>
-    </form>
-  </div>
-
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h2><i class="fas fa-boxes"></i> <span>Dashboard</span></h2>
+  <a href="#" class="active"><i class="fas fa-home"></i> <span>Overview</span></a>
+  <a href="#"><i class="fas fa-warehouse"></i> <span>Inventory</span></a>
+  <a href="#"><i class="fas fa-chart-line"></i> <span>Reports</span></a>
+  <a href="#"><i class="fas fa-exclamation-triangle"></i> <span>Loss Records</span></a>
+  <a href="#"><i class="fas fa-plus-circle"></i> <span>Add Inventory</span></a>
+  <a href="#"><i class="fas fa-minus-circle"></i> <span>Record Loss</span></a>
+  <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
 </div>
+
+<!-- Main content -->
+<div class="main-content" id="main-content">
+  <header>
+    <h1>📦 Inventory Manager Dashboard</h1>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Real-Time Storage Conditions (Simulated)</h2>
+      <p>🌡️ Temperature: <strong>12°C</strong></p>
+      <p>💧 Humidity: <strong>85%</strong></p>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Expiring Soon</h2>
+      <div class="alert">
+        <ul>
+          <li>Tomatoes (Harvested: 2025-04-10)</li>
+          <li>Spinach (Harvested: 2025-04-09)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📋 Inventory List</h2>
+      <table>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity</th>
+          <th>Harvest Date</th>
+          <th>Storage Location</th>
+        </tr>
+        <tr>
+          <td>Tomatoes</td>
+          <td>100 kg</td>
+          <td>2025-04-10</td>
+          <td>Cold Room A</td>
+        </tr>
+        <tr>
+          <td>Spinach</td>
+          <td>50 kg</td>
+          <td>2025-04-09</td>
+          <td>Cold Room B</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>❌ Loss Records</h2>
+      <table>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity Lost</th>
+          <th>Reason</th>
+          <th>Stage</th>
+          <th>Date</th>
+        </tr>
+        <tr>
+          <td>Bananas</td>
+          <td>20 kg</td>
+          <td>Spoilage</td>
+          <td>Storage</td>
+          <td>2025-04-14</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>➕ Add New Inventory</h2>
+      <form>
+        <input type="text" placeholder="Produce Name" required>
+        <input type="number" placeholder="Quantity (kg)" required>
+        <input type="date" required>
+        <input type="text" placeholder="Storage Location" required>
+        <button type="submit">Add Inventory</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>➖ Record Loss</h2>
+      <form>
+        <input type="text" placeholder="Produce Name" required>
+        <input type="number" placeholder="Lost Quantity (kg)" required>
+        <input type="text" placeholder="Reason (e.g., spoilage)" required>
+        <select required>
+          <option value="">-- Select Stage --</option>
+          <option value="Harvesting">Harvesting</option>
+          <option value="Storage">Storage</option>
+          <option value="Transportation">Transportation</option>
+        </select>
+        <button type="submit">Record Loss</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+    sidebar.classList.toggle('collapsed');
+    mainContent.classList.toggle('collapsed');
+  }
+
+  // Highlight active link
+  const links = document.querySelectorAll('.sidebar a');
+  links.forEach(link => {
+    link.addEventListener('click', function() {
+      links.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
 
 </body>
 </html>

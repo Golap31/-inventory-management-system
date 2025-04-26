@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Record Loss with Sidebar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f8;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #2c3e50;
+      height: 100vh;
+      padding-top: 30px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #1a242f;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 220px;
+      padding: 30px;
+      width: calc(100% - 220px);
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    form input, form select, form button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    form button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #1a242f;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>📦 Dashboard</h2>
+  <a href="#">Home</a>
+  <a href="#">Inventory</a>
+  <a href="#">Record Loss</a>
+  <a href="#">Reports</a>
+  <a href="#">Settings</a>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <div class="card">
+    <h2>➖ Record Loss</h2>
+
+    <form id="lossForm">
+      <input type="text" id="produceName" placeholder="Produce Name" required>
+      <input type="number" id="lostQuantity" placeholder="Lost Quantity (kg)" required>
+      <input type="text" id="reason" placeholder="Reason (e.g., spoilage)" required>
+      <select id="stage" required>
+        <option value="">-- Select Stage --</option>
+        <option value="Harvesting">Harvesting</option>
+        <option value="Storage">Storage</option>
+        <option value="Transportation">Transportation</option>
+      </select>
+      <input type="date" id="lossDate" required>
+      <button type="submit">Record Loss</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>📋 Loss Records</h2>
+    <table id="lossTable">
+      <thead>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity Lost (kg)</th>
+          <th>Reason</th>
+          <th>Stage</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Entries will appear here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('lossForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent page reload
+
+    // Get input values
+    const produceName = document.getElementById('produceName').value;
+    const lostQuantity = document.getElementById('lostQuantity').value;
+    const reason = document.getElementById('reason').value;
+    const stage = document.getElementById('stage').value;
+    const lossDate = document.getElementById('lossDate').value;
+
+    // Create a new row
+    const table = document.getElementById('lossTable').querySelector('tbody');
+    const newRow = table.insertRow();
+
+    newRow.innerHTML = `
+      <td>${produceName}</td>
+      <td>${lostQuantity} kg</td>
+      <td>${reason}</td>
+      <td>${stage}</td>
+      <td>${lossDate}</td>
+    `;
+
+    // Reset the form
+    document.getElementById('lossForm').reset();
+  });
+</script>
+
+</body>
+</html>
