@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Default XAMPP MySQL username
 $password = ""; // Default XAMPP MySQL password
-$dbname = "loss_db"; // Your database name
+$dbname = "inventorymanagementsystem"; // Your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

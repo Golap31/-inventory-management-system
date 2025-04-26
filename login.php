@@ -24,9 +24,11 @@
                     <input type = "text"  name = "email" placeholder = "Username" required>
                     <input type = "password"  name = "password" placeholder = "Password" required> 
                     <input type = "submit"  name = "submitPassword" value= "SUBMIT" >
+                
                 </form>
                 <a href="register.php" class= "signInMessage" >Need an account? Sign up here</a>
-                <a href="Dashboard.html" class= "Login" >Go to Dashboard page</a>
+                <a href="dashboard.html" class= "signInMessage" >Dashboard</a>
+                
                     
 
             </div> 
