@@ -148,32 +148,47 @@
 </div>
 
 <script>
-  document.getElementById('lossForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent page reload
-
-    // Get input values
-    const produceName = document.getElementById('produceName').value;
-    const lostQuantity = document.getElementById('lostQuantity').value;
-    const reason = document.getElementById('reason').value;
-    const stage = document.getElementById('stage').value;
-    const lossDate = document.getElementById('lossDate').value;
-
-    // Create a new row
-    const table = document.getElementById('lossTable').querySelector('tbody');
-    const newRow = table.insertRow();
-
-    newRow.innerHTML = `
-      <td>${produceName}</td>
-      <td>${lostQuantity} kg</td>
-      <td>${reason}</td>
-      <td>${stage}</td>
-      <td>${lossDate}</td>
-    `;
-
-    // Reset the form
-    document.getElementById('lossForm').reset();
-  });
-</script>
+    document.getElementById('lossForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent page reload
+    
+        // Get input values
+        const produceName = document.getElementById('produceName').value;
+        const lostQuantity = document.getElementById('lostQuantity').value;
+        const reason = document.getElementById('reason').value;
+        const stage = document.getElementById('stage').value;
+        const lossDate = document.getElementById('lossDate').value;
+    
+        // Send data to PHP using AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "loss_backend.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+        xhr.onload = function() {
+            if (this.status == 200) {
+                alert(this.responseText);
+    
+                // After success, add to table dynamically
+                const table = document.getElementById('lossTable').querySelector('tbody');
+                const newRow = table.insertRow();
+    
+                newRow.innerHTML = `
+                  <td>${produceName}</td>
+                  <td>${lostQuantity} kg</td>
+                  <td>${reason}</td>
+                  <td>${stage}</td>
+                  <td>${lossDate}</td>
+                `;
+    
+                document.getElementById('lossForm').reset();
+            }
+        };
+    
+        xhr.send(
+          `produceName=${encodeURIComponent(produceName)}&lostQuantity=${encodeURIComponent(lostQuantity)}&reason=${encodeURIComponent(reason)}&stage=${encodeURIComponent(stage)}&lossDate=${encodeURIComponent(lossDate)}`
+        );
+    });
+    </script>
+    
 
 </body>
 </html>

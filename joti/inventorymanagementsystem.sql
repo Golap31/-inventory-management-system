@@ -174,6 +174,57 @@ CREATE TABLE `warehouse_t` (
   `Date Time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+<<<<<<< HEAD
+CREATE TABLE inventory (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produce_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    harvest_date DATE NOT NULL,
+    storage_location VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS loss_records (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produce_name VARCHAR(255) NOT NULL,
+    lost_quantity INT NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    stage VARCHAR(100) NOT NULL,
+    loss_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+=======
+-- Create table
+CREATE TABLE distribution_records (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  shipment_id VARCHAR(20) NOT NULL,
+  item VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  transport_mode VARCHAR(100) NOT NULL,
+  receiver VARCHAR(255) NOT NULL,
+  distribution_date DATE NOT NULL,
+  departure_date DATE NOT NULL,
+  arrival_date DATE NOT NULL,
+  loading_loss INT DEFAULT 0,
+  unloading_loss INT DEFAULT 0,
+  harvest_loss INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE sales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    price_per_unit DECIMAL(10,2) NOT NULL,
+    total_amount DECIMAL(12,2) NOT NULL,
+    due_amount DECIMAL(12,2) NOT NULL,
+    customer_name VARCHAR(255) NOT NULL,
+    sale_date DATE NOT NULL
+);
+
+
+>>>>>>> 9bee2217fadf13fa73ae6ccb28ac3fc0dafc23e9
 --
 -- Indexes for dumped tables
 --
