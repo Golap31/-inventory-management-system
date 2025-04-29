@@ -10,9 +10,6 @@
                 <th>ID</th>
                 <th>Product Name</th>
                 <th>Product Type</th>
-                <th>Product Quantity in Kilograms</th>
-                <th>Storage Location</th>
-
             </tr>
         </thead>
        <tbody>
@@ -32,8 +29,6 @@
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['productname']; ?></td>
                 <td><?php echo $row['type']; ?></td>
-                <td><?php echo $row['quantity']; ?></td>
-                <td><?php echo $row['storagelocation']; ?></td>
             <tr>
             
                 
@@ -48,7 +43,17 @@
 
         </tbody>
     </table>
-<form>
+
+
+<?php
+
+if (isset($_GET['message'])) {
+    echo "<h6>" . $_GET['message'] . "</h6>";
+}
+
+?>
+
+<form action="insert_data.php" method="post">
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -66,15 +71,6 @@
                 <label for="f_name">Product Type</label>
                 <input type="text" name="product_type" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="f_name">Product Quantity in Kilograms</label>
-                <input type="text" name="product_quantity" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="f_name">Storage Location</label>
-                <input type="text" name="storage_location" class="form-control">
-            </div>
-        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
