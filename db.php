@@ -2,7 +2,7 @@
     $servername="localhost";
     $username="root";
     $password="";
-    $db_name="ims";
+    $db_name="inventorymanagementsystem";
 
     $conn=new mysqli($servername, $username, $password, $db_name);
     

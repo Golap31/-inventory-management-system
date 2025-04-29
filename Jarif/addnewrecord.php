@@ -1,25 +1,25 @@
 <?php
-// Database connection
+
 $servername = "localhost";
-$username = "root"; // Change if different
-$password = ""; // Change if different
+$username = "root"; 
+$password = ""; 
 $dbname = "inventorymanagementsystem";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize variables
+
 $message = "";
 $messageType = "";
 
-// Process form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
-    // Get form data
+    
     $product_name = $_POST['product_name'];
     $batch_code = $_POST['batch_code'];
     $harvest_date = $_POST['harvest_date'];
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
     $expiry_date = $_POST['expiry_date'];
     $alert_status = $_POST['alert_status'];
     
-    // Prepare and execute SQL query
+    
     $sql = "INSERT INTO lossanalysis (product_name, batch_code, harvest_date, storage_location, 
             detected_issue, issue_description, reported_by, detected_date, expiry_date, alert_status) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
     }
 }
 
-// Get existing records for display
+
 $sql = "SELECT * FROM lossanalysis";
 $result = $conn->query($sql);
 ?>
@@ -256,7 +256,7 @@ $result = $conn->query($sql);
         </tbody>
     </table>
     
-    <!-- Add New Record Modal -->
+    
     <div id="addRecordModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -333,7 +333,7 @@ $result = $conn->query($sql);
     </div>
     
     <script>
-        // Modal functionality
+        
         const modal = document.getElementById("addRecordModal");
         
         function openModal() {
@@ -344,7 +344,7 @@ $result = $conn->query($sql);
             modal.style.display = "none";
         }
         
-        // Close modal when clicking outside of it
+        
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
@@ -355,6 +355,6 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-// Close the database connection
+
 $conn->close();
 ?>
