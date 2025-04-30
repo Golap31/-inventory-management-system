@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distribution Input Page</title>
+  <style>
+    /* Reset some default margins */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-left, .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-left a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .navbar-left a:hover {
+      text-decoration: underline;
+    }
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: #bbb;
+    }
+    .logout-btn {
+      padding: 8px 15px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .logout-btn:hover {
+      background-color: #c82333;
+    }
+    .main-content {
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 1100px;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button[type="submit"] {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #1976D2;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #2196F3;
+      color: white;
+      font-size: 16px;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .action-btn {
+      padding: 5px 10px;
+      margin: 2px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .edit-btn {
+      background-color: #ffc107;
+      color: black;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-left">
+    <!-- <a href="#">Home</a>
+    <a href="#">Distribution</a>
+    <a href="#">Reports</a>
+    <a href="#">Inventory</a>
+    <a href="#">Settings</a> -->
+  </div>
+  <div class="navbar-right">
+    <div class="profile-pic"></div>
+    <button<a href="home.html" class="logout-btn">Logout</a></button>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <div class="container">
+    <h2>Distribution Input Form</h2>
+    <form id="distributionForm">
+      <label for="item">Item Name:</label>
+      <input type="text" id="item" name="item" required>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required>
+
+      <label for="transportMode">Transport Mode:</label>
+      <input type="text" id="transportMode" name="transportMode" required>
+
+      <label for="receiver">Receiver Name:</label>
+      <input type="text" id="receiver" name="receiver" required>
+
+      <label for="distributionDate">Distribution Date:</label>
+      <input type="date" id="distributionDate" name="distributionDate" required>
+
+      <label for="departureDate">Departure Date:</label>
+      <input type="date" id="departureDate" name="departureDate" required>
+
+      <label for="arrivalDate">Arrival Date:</label>
+      <input type="date" id="arrivalDate" name="arrivalDate" required>
+
+      <label for="loadingLoss">Loading Loss:</label>
+      <input type="number" id="loadingLoss" name="loadingLoss" required>
+
+      <label for="unloadingLoss">Unloading Loss:</label>
+      <input type="number" id="unloadingLoss" name="unloadingLoss" required>
+
+      <label for="harvestLoss">Harvest Loss:</label>
+      <input type="number" id="harvestLoss" name="harvestLoss" required>
+
+      <button type="submit">Submit Distribution</button>
+    </form>
+  </div>
+
+  <h2 style="margin-top: 40px;">Distribution Records</h2>
+  <table id="distributionTable">
+    <thead>
+      <tr>
+        <th>Distribution ID</th>
+        <th>Shipment ID</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Transport Mode</th>
+        <th>Receiver</th>
+        <th>Distribution Date</th>
+        <th>Departure Date</th>
+        <th>Arrival Date</th>
+        <th>Loading Loss</th>
+        <th>Unloading Loss</th>
+        <th>Harvest Loss</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Distribution entries will appear here -->
+    </tbody>
+  </table>
+</div>
+
+<!-- JS -->
+<script>
+  let distributionId = 1;
+  let shipmentId = 1000;
+
+  const form = document.getElementById('distributionForm');
+  const tableBody = document.querySelector('#distributionTable tbody');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const item = document.getElementById('item').value;
+    const quantity = document.getElementById('quantity').value;
+    const transportMode = document.getElementById('transportMode').value;
+    const receiver = document.getElementById('receiver').value;
+    const distributionDate = document.getElementById('distributionDate').value;
+    const departureDate = document.getElementById('departureDate').value;
+    const arrivalDate = document.getElementById('arrivalDate').value;
+    const loadingLoss = document.getElementById('loadingLoss').value;
+    const unloadingLoss = document.getElementById('unloadingLoss').value;
+    const harvestLoss = document.getElementById('harvestLoss').value;
+
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <td>${distributionId}</td>
+      <td>${shipmentId}</td>
+      <td>${item}</td>
+      <td>${quantity}</td>
+      <td>${transportMode}</td>
+      <td>${receiver}</td>
+      <td>${distributionDate}</td>
+      <td>${departureDate}</td>
+      <td>${arrivalDate}</td>
+      <td>${loadingLoss}</td>
+      <td>${unloadingLoss}</td>
+      <td>${harvestLoss}</td>
+      <td>
+        <button class="action-btn edit-btn" onclick="editRow(this)">Edit</button>
+        <button class="action-btn delete-btn" onclick="deleteRow(this)">Delete</button>
+      </td>
+    `;
+
+    tableBody.appendChild(newRow);
+
+    distributionId++;
+    shipmentId++;
+    form.reset();
+  });
+
+  function deleteRow(btn) {
+    const row = btn.parentElement.parentElement;
+    row.remove();
+  }
+
+  function editRow(btn) {
+    const row = btn.parentElement.parentElement;
+    const cells = row.querySelectorAll('td');
+
+    document.getElementById('item').value = cells[2].innerText;
+    document.getElementById('quantity').value = cells[3].innerText;
+    document.getElementById('transportMode').value = cells[4].innerText;
+    document.getElementById('receiver').value = cells[5].innerText;
+    document.getElementById('distributionDate').value = cells[6].innerText;
+    document.getElementById('departureDate').value = cells[7].innerText;
+    document.getElementById('arrivalDate').value = cells[8].innerText;
+    document.getElementById('loadingLoss').value = cells[9].innerText;
+    document.getElementById('unloadingLoss').value = cells[10].innerText;
+    document.getElementById('harvestLoss').value = cells[11].innerText;
+
+    row.remove();
+  }
+</script>
+
+</body>
+</html>

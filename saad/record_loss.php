@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "inventory_system");
+$conn = new mysqli("localhost", "root", "", "inventory");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $produce = $_POST['produce_name'];

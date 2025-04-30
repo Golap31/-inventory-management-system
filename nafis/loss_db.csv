@@ -1,0 +1,4 @@
+"id","product_name","loss_type","stage","loss_date","lost_amount","unit","created_at"
+"1","Rice","spoilage","warehouse","2025-04-25","50.00","kg","2025-04-26 06:44:35"
+"2","Tomatoes","weight","shipment","2025-04-26","20.00","kg","2025-04-26 06:44:35"
+"3","Apples","expired","warehouse","2025-04-24","30.00","pieces","2025-04-26 06:44:35"
