@@ -29,6 +29,11 @@
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['productname']; ?></td>
                 <td><?php echo $row['type']; ?></td>
+                <td>
+                    <a href="update_page.php?id=<?php echo $row['id']; ?>">Edit</a>
+                   
+
+                </td>
             <tr>
             
                 
@@ -51,6 +56,18 @@ if (isset($_GET['message'])) {
     echo "<h6>" . $_GET['message'] . "</h6>";
 }
 
+?>
+<?php
+
+if (isset($_GET['insert_msg'])) {
+    echo "<h6>" . $_GET['insert_msg'] . "</h6>";
+}
+
+?>
+<?php
+if (isset($_GET['update_msg'])) {
+    echo "<p style='color: green;'>" . $_GET['update_msg'] . "</p>";
+}
 ?>
 
 <form action="insert_data.php" method="post">
