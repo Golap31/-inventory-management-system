@@ -48,9 +48,14 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Update Product</title>
+    <link rel="stylesheet" href="style.css"> <!-- Adjust path if needed -->
 </head>
 <body>
-
+<div class="signInContainer">
+    <div class="column">
+        <div class="header">
+            <h3>Update Product</h3>
+        </div>
 <h2>Update Product</h2>
 <form action="update_page.php" method="POST">
     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
