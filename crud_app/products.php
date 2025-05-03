@@ -29,6 +29,14 @@
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['productname']; ?></td>
                 <td><?php echo $row['type']; ?></td>
+                <td>
+                    <a href="update_page.php?id=<?php echo $row['id']; ?>">Edit</a>
+                    <a href="delete.php?id=<?php echo $row['id']; ?>" 
+                        onclick="return confirm('Are you sure you want to delete this product?');"
+                        style="color: red;">Delete</a>
+                   
+
+                </td>
             <tr>
             
                 
@@ -52,6 +60,21 @@ if (isset($_GET['message'])) {
 }
 
 ?>
+<?php
+
+if (isset($_GET['insert_msg'])) {
+    echo "<h6>" . $_GET['insert_msg'] . "</h6>";
+}
+
+?>
+<?php
+if (isset($_GET['update_msg'])) {
+    echo "<p style='color: green;'>" . $_GET['update_msg'] . "</p>";
+}
+?>
+<?php if (isset($_GET['delete_msg'])): ?>
+    <p style="color: green;"><?php echo htmlspecialchars($_GET['delete_msg']); ?></p>
+<?php endif; ?>
 
 <form action="insert_data.php" method="post">
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">

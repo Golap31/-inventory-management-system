@@ -285,6 +285,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             <select name="action" id="bulk-action">
                 <option value="">-- Select Action --</option>
                 <option value="edit">Edit Selected</option>
+                <option value="copy">Copy Selected</option>
                 <option value="delete">Delete Selected</option>
                 <option value="export">Export Selected</option>
             </select>
@@ -684,4 +685,154 @@ $result = $conn->query($sql);
         </div>
     <?php endif; ?>
     
+    <button class="add-btn" onclick="openModal()">Add New Record</button>
     
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Batch Code</th>
+                <th>Harvest Date</th>
+                <th>Storage Location</th>
+                <th>Detected Issue</th>
+                <th>Issue Description</th>
+                <th>Reported By</th>
+                <th>Detected Date</th>
+                <th>Expiry Date</th>
+                <th>Alert Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($result && $result->num_rows > 0): ?>
+                <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['product_name']; ?></td>
+                        <td><?php echo $row['batch_code']; ?></td>
+                        <td><?php echo $row['harvest_date']; ?></td>
+                        <td><?php echo $row['storage_location']; ?></td>
+                        <td><?php echo $row['detected_issue']; ?></td>
+                        <td><?php echo $row['issue_description']; ?></td>
+                        <td><?php echo $row['reported_by']; ?></td>
+                        <td><?php echo $row['detected_date']; ?></td>
+                        <td><?php echo $row['expiry_date']; ?></td>
+                        <td><?php echo $row['alert_status']; ?></td>
+                        <td>
+                            <button class="actions-btn edit-btn">Edit</button>
+                            <button class="actions-btn copy-btn">Copy</button>
+                            <button class="actions-btn delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="12">No records found</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    
+    <!-- Add New Record Modal -->
+    <div id="addRecordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add New Record</h2>
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="product_name">Product Name</label>
+                    <input type="text" id="product_name" name="product_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="batch_code">Batch Code</label>
+                    <input type="text" id="batch_code" name="batch_code" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="harvest_date">Harvest Date</label>
+                    <input type="date" id="harvest_date" name="harvest_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="storage_location">Storage Location</label>
+                    <select id="storage_location" name="storage_location" required>
+                        <option value="">Select Location</option>
+                        <option value="Cold Storage A">Cold Storage A</option>
+                        <option value="Warehouse B">Warehouse B</option>
+                        <option value="Refrigerator Unit 3">Refrigerator Unit 3</option>
+                        <option value="Warehouse C">Warehouse C</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="detected_issue">Detected Issue</label>
+                    <select id="detected_issue" name="detected_issue" required>
+                        <option value="">Select Issue</option>
+                        <option value="Spoilage">Spoilage</option>
+                        <option value="Physical Damage">Physical Damage</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="issue_description">Issue Description</label>
+                    <input type="text" id="issue_description" name="issue_description" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reported_by">Reported By</label>
+                    <input type="text" id="reported_by" name="reported_by" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="detected_date">Detected Date</label>
+                    <input type="date" id="detected_date" name="detected_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expiry_date">Expiry Date</label>
+                    <input type="date" id="expiry_date" name="expiry_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alert_status">Alert Status</label>
+                    <select id="alert_status" name="alert_status" required>
+                        <option value="">Select Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Alert Sent">Alert Sent</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+                
+                <input type="submit" name="add_record" value="Save Record" class="submit-btn">
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("addRecordModal");
+        
+        function openModal() {
+            modal.style.display = "block";
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
