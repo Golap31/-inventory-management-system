@@ -27,7 +27,7 @@
     <?php
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $isExpiring = (strtotime($row["expiry_date"]) - time()) < (3 * 24 * 60 * 60); // 3 days warning
+            $isExpiring = (strtotime($row["expiry_date"]) - time()) < (3 * 24 * 60 * 60); 
             echo "<tr" . ($isExpiring ? " class='alert'" : "") . ">";
             echo "<td>" . htmlspecialchars($row["product_name"]) . "</td>";
             echo "<td>" . htmlspecialchars($row["batch_code"]) . "</td>";

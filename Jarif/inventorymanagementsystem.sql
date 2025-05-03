@@ -31,3 +31,11 @@ CREATE TABLE NotificationLog (
     sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (loss_id) REFERENCES LossAnalysis(id)
 );
+
+INSERT INTO NotificationLog (loss_id, notification_type, status, message)
+VALUES 
+(1, 'Email', 'Sent', 'Alert: Tomatoes are expiring on 2025-04-25.'),
+(2, 'Push', 'Sent', 'Alert: Bananas in Batch002 are nearing expiry.'),
+(3, 'Email', 'Sent', 'Critical Spoilage Alert: Spinach expiring on 2025-04-20.'),
+(4, 'Banner', 'Sent', 'Notice: Apples have damage but are safe till 2025-05-01.'),
+(5, 'SMS', 'Failed', 'Urgent: Strawberries show spoilage and are near expiry.');

@@ -1,1 +1,1 @@
-Hello 
+Inventory Management System

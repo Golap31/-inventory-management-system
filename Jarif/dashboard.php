@@ -1,78 +1,77 @@
 <?php
-// Database connection settings
-$host = "localhost";
-$username = "root"; // Change this to your MySQL username
-$password = ""; // Change this to your MySQL password
-$database = "inventorymanagementsystem"; // Change this to your database name
 
-// Create database connection
+$host = "localhost";
+$username = "root"; 
+$password = ""; 
+$database = "inventorymanagementsystem"; 
+
+
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Process bulk actions
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_POST['selected'])) {
     $action = $_POST['action'];
     
     if ($action == 'delete' && !empty($_POST['selected'])) {
-        // Redirect to delete.php with selected IDs
+        
         echo "<script>window.location.href = 'delete.php?" . http_build_query($_POST) . "';</script>";
         exit;
     } else if ($action == 'edit' && !empty($_POST['selected'])) {
-        // Redirect to edit.php with first selected ID
+        
         echo "<script>window.location.href = 'edit.php?" . http_build_query($_POST) . "';</script>";
         exit;
     } else if ($action == 'copy' && !empty($_POST['selected'])) {
-        // Redirect to copy.php with selected IDs
+        
         echo "<script>window.location.href = 'copy.php?" . http_build_query($_POST) . "';</script>";
         exit;
     } else if ($action == 'export' && !empty($_POST['selected'])) {
-        // Handle export action (to be implemented)
-        // For now, just show an alert
+       
         echo "<script>alert('Export functionality will be implemented soon.');</script>";
     }
 }
 
-// Query to fetch data from lossanalysis table
+
 $sql = "SELECT * FROM lossanalysis";
 $result = $conn->query($sql);
 
-// Prepare data for charts
+
 $detectedIssues = [];
 $alertStatus = [];
 $storageLocations = [];
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Count detected issues
+       
         if (!isset($detectedIssues[$row['detected_issue']])) {
             $detectedIssues[$row['detected_issue']] = 1;
         } else {
             $detectedIssues[$row['detected_issue']]++;
         }
         
-        // Count alert statuses
+       
         if (!isset($alertStatus[$row['alert_status']])) {
             $alertStatus[$row['alert_status']] = 1;
         } else {
             $alertStatus[$row['alert_status']]++;
         }
         
-        // Count storage locations
+       
         if (!isset($storageLocations[$row['storage_location']])) {
             $storageLocations[$row['storage_location']] = 1;
         } else {
             $storageLocations[$row['storage_location']]++;
         }
     }
-    // Reset result pointer for table display
+    
     $result->data_seek(0);
 }
 
-// Convert data to JSON for JavaScript
+
 $issuesJson = json_encode(array_keys($detectedIssues));
 $issuesCountJson = json_encode(array_values($detectedIssues));
 
@@ -217,9 +216,9 @@ $locationsCountJson = json_encode(array_values($storageLocations));
     </style>
 </head>
 <body>
-    <h1>Loss Analysis Report</h1>
+    <h1></h1>
 
-    <!-- Charts Section -->
+    
    
 
     <form method="post" id="recordsForm">
@@ -245,7 +244,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        // Set status class
+                        
                         $statusClass = '';
                         if ($row['alert_status'] == 'Pending') {
                             $statusClass = 'pending';
@@ -286,7 +285,6 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             <select name="action" id="bulk-action">
                 <option value="">-- Select Action --</option>
                 <option value="edit">Edit Selected</option>
-                <option value="copy">Copy Selected</option>
                 <option value="delete">Delete Selected</option>
                 <option value="export">Export Selected</option>
             </select>
@@ -310,7 +308,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
         </div>
     </div>
 
-    <!-- Confirmation Dialog -->
+    
     <div id="confirmation-dialog" class="confirmation-dialog">
         <div class="dialog-content">
             <p>Are you sure you want to delete this record?</p>
@@ -322,9 +320,9 @@ $locationsCountJson = json_encode(array_values($storageLocations));
     </div>
 
     <script>
-        // Chart.js configurations
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Extract data from PHP variables
+           
             const issuesLabels = <?php echo $issuesJson; ?>;
             const issuesData = <?php echo $issuesCountJson; ?>;
             
@@ -334,7 +332,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             const locationsLabels = <?php echo $locationsJson; ?>;
             const locationsData = <?php echo $locationsCountJson; ?>;
             
-            // Chart colors
+            
             const backgroundColors = [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -353,7 +351,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
                 'rgba(255, 159, 64, 1)'
             ];
             
-            // Create Issues Chart
+            
             const issuesCtx = document.getElementById('issuesChart').getContext('2d');
             const issuesChart = new Chart(issuesCtx, {
                 type: 'bar',
@@ -380,7 +378,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
                 }
             });
             
-            // Create Status Chart
+            
             const statusCtx = document.getElementById('statusChart').getContext('2d');
             const statusChart = new Chart(statusCtx, {
                 type: 'pie',
@@ -399,7 +397,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
                 }
             });
             
-            // Create Locations Chart
+            
             const locationsCtx = document.getElementById('locationsChart').getContext('2d');
             const locationsChart = new Chart(locationsCtx, {
                 type: 'doughnut',
@@ -419,7 +417,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             });
         });
         
-        // Check/Uncheck all checkbox functionality
+      
         document.getElementById('check-all').addEventListener('change', function() {
             const checkboxes = document.querySelectorAll('input[name="selected[]"]');
             for (let checkbox of checkboxes) {
@@ -427,7 +425,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             }
         });
         
-        // Bulk action functionality
+        
         function applyBulkAction() {
             const action = document.getElementById('bulk-action').value;
             if (action === '') {
@@ -450,7 +448,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             }
         }
         
-        // Delete confirmation dialog
+       
         let recordToDelete = null;
         
         function confirmDelete(id) {
@@ -472,33 +470,33 @@ $locationsCountJson = json_encode(array_values($storageLocations));
 </body>
 </html>
 <?php
-// Close the database connection
+
 $conn->close();
 ?>
 
 
 <?php
-// Database connection
+
 $servername = "localhost";
-$username = "root"; // Change if different
-$password = ""; // Change if different
+$username = "root"; 
+$password = ""; 
 $dbname = "inventorymanagementsystem";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize variables
+
 $message = "";
 $messageType = "";
 
-// Process form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
-    // Get form data
+    
     $product_name = $_POST['product_name'];
     $batch_code = $_POST['batch_code'];
     $harvest_date = $_POST['harvest_date'];
@@ -510,7 +508,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
     $expiry_date = $_POST['expiry_date'];
     $alert_status = $_POST['alert_status'];
     
-    // Prepare and execute SQL query
+    
     $sql = "INSERT INTO lossanalysis (product_name, batch_code, harvest_date, storage_location, 
             detected_issue, issue_description, reported_by, detected_date, expiry_date, alert_status) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -546,7 +544,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_record'])) {
     }
 }
 
-// Get existing records for display
+
 $sql = "SELECT * FROM lossanalysis";
 $result = $conn->query($sql);
 ?>
@@ -678,7 +676,7 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-    <h1>Loss Analysis Report</h1>
+    <h1>Analysis of Loss Causes</h1>
     
     <?php if (!empty($message)): ?>
         <div class="message <?php echo $messageType; ?>">
@@ -686,154 +684,4 @@ $result = $conn->query($sql);
         </div>
     <?php endif; ?>
     
-    <button class="add-btn" onclick="openModal()">Add New Record</button>
     
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Batch Code</th>
-                <th>Harvest Date</th>
-                <th>Storage Location</th>
-                <th>Detected Issue</th>
-                <th>Issue Description</th>
-                <th>Reported By</th>
-                <th>Detected Date</th>
-                <th>Expiry Date</th>
-                <th>Alert Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result && $result->num_rows > 0): ?>
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['product_name']; ?></td>
-                        <td><?php echo $row['batch_code']; ?></td>
-                        <td><?php echo $row['harvest_date']; ?></td>
-                        <td><?php echo $row['storage_location']; ?></td>
-                        <td><?php echo $row['detected_issue']; ?></td>
-                        <td><?php echo $row['issue_description']; ?></td>
-                        <td><?php echo $row['reported_by']; ?></td>
-                        <td><?php echo $row['detected_date']; ?></td>
-                        <td><?php echo $row['expiry_date']; ?></td>
-                        <td><?php echo $row['alert_status']; ?></td>
-                        <td>
-                            <button class="actions-btn edit-btn">Edit</button>
-                            <button class="actions-btn copy-btn">Copy</button>
-                            <button class="actions-btn delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="12">No records found</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-    
-    <!-- Add New Record Modal -->
-    <div id="addRecordModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Add New Record</h2>
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="product_name">Product Name</label>
-                    <input type="text" id="product_name" name="product_name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="batch_code">Batch Code</label>
-                    <input type="text" id="batch_code" name="batch_code" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="harvest_date">Harvest Date</label>
-                    <input type="date" id="harvest_date" name="harvest_date" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="storage_location">Storage Location</label>
-                    <select id="storage_location" name="storage_location" required>
-                        <option value="">Select Location</option>
-                        <option value="Cold Storage A">Cold Storage A</option>
-                        <option value="Warehouse B">Warehouse B</option>
-                        <option value="Refrigerator Unit 3">Refrigerator Unit 3</option>
-                        <option value="Warehouse C">Warehouse C</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="detected_issue">Detected Issue</label>
-                    <select id="detected_issue" name="detected_issue" required>
-                        <option value="">Select Issue</option>
-                        <option value="Spoilage">Spoilage</option>
-                        <option value="Physical Damage">Physical Damage</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="issue_description">Issue Description</label>
-                    <input type="text" id="issue_description" name="issue_description" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reported_by">Reported By</label>
-                    <input type="text" id="reported_by" name="reported_by" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="detected_date">Detected Date</label>
-                    <input type="date" id="detected_date" name="detected_date" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="expiry_date">Expiry Date</label>
-                    <input type="date" id="expiry_date" name="expiry_date" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alert_status">Alert Status</label>
-                    <select id="alert_status" name="alert_status" required>
-                        <option value="">Select Status</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Alert Sent">Alert Sent</option>
-                        <option value="Resolved">Resolved</option>
-                    </select>
-                </div>
-                
-                <input type="submit" name="add_record" value="Save Record" class="submit-btn">
-            </form>
-        </div>
-    </div>
-    
-    <script>
-        // Modal functionality
-        const modal = document.getElementById("addRecordModal");
-        
-        function openModal() {
-            modal.style.display = "block";
-        }
-        
-        function closeModal() {
-            modal.style.display = "none";
-        }
-        
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
-</body>
-</html>
-
-<?php
-// Close the database connection
-$conn->close();
-?>

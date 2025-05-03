@@ -1,14 +1,14 @@
 <?php
-// Database connection settings
-$host = "localhost";
-$username = "root"; // Change this to your MySQL username
-$password = ""; // Change this to your MySQL password
-$database = "inventorymanagementsystem"; // Change this to your database name
 
-// Create database connection
+$host = "localhost";
+$username = "root"; 
+$password = ""; 
+$database = "inventorymanagementsystem"; 
+
+
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -16,9 +16,9 @@ if ($conn->connect_error) {
 $message = '';
 $record = null;
 
-// Check if form is submitted for update
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
-    // Get form data
+    
     $id = $_POST['id'];
     $product_name = $_POST['product_name'];
     $batch_code = $_POST['batch_code'];
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $expiry_date = $_POST['expiry_date'];
     $alert_status = $_POST['alert_status'];
     
-    // Prepare and bind
+   
     $stmt = $conn->prepare("UPDATE lossanalysis SET 
                             product_name = ?, 
                             batch_code = ?, 
@@ -58,27 +58,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
                       $alert_status, 
                       $id);
     
-    // Execute statement
+    
     if ($stmt->execute()) {
         $message = "Record updated successfully";
     } else {
         $message = "Error updating record: " . $conn->error;
     }
     
-    // Close statement
+    
     $stmt->close();
 }
 
-// Check if ID is provided through GET or POST
+
 $id = 0;
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = intval($_GET['id']);
 } elseif (isset($_POST['selected']) && is_array($_POST['selected']) && count($_POST['selected']) > 0) {
-    // Get first ID from selected array for bulk edit
+    
     $id = intval($_POST['selected'][0]);
 }
 
-// Fetch record data for editing
+
 if ($id > 0) {
     $stmt = $conn->prepare("SELECT * FROM lossanalysis WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -94,7 +94,7 @@ if ($id > 0) {
     $stmt->close();
 }
 
-// Close connection (we'll reopen it if needed in HTML section)
+
 $conn->close();
 ?>
 

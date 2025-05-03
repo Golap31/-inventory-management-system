@@ -1,4 +1,4 @@
-/* Reset & Base Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -10,13 +10,13 @@ body {
   color: #333;
 }
 
-/* Layout */
+
 .dashboard-container {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+
 .sidebar {
   width: 250px;
   background-color: #fff;
@@ -43,13 +43,13 @@ body {
   color: #2563eb;
 }
 
-/* Main Content */
+
 .main-content {
   flex: 1;
   padding: 2rem;
 }
 
-/* Top Bar */
+
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -77,7 +77,7 @@ body {
   border-radius: 50%;
 }
 
-/* Stats Cards */
+
 .stats-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -100,9 +100,9 @@ body {
   font-weight: bold;
 }
 
-.card:nth-child(1) p { color: #2563eb; } /* Blue */
-.card:nth-child(2) p { color: #eab308; } /* Yellow */
-.card:nth-child(3) p { color: #10b981; } /* Green */
+.card:nth-child(1) p { color: #2563eb; } 
+.card:nth-child(2) p { color: #eab308; } 
+.card:nth-child(3) p { color: #10b981; } 
 
 .recent-orders {
   background-color: #fff;
@@ -168,11 +168,11 @@ body {
 
 
 body {
-background-image: url('bg.webp'); /* Replace with your image path */
-background-size: cover; /* Makes the image cover the whole screen */
-background-position: center center; /* Centers the background image */
-background-attachment: fixed; /* Keeps the background fixed while scrolling */
-background-repeat: no-repeat; /* Prevents the background from repeating */
+background-image: url('bg.webp'); 
+background-size: cover; 
+background-position: center center; 
+background-attachment: fixed; 
+background-repeat: no-repeat; 
 }
 
 \page-break>
@@ -183,8 +183,8 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black overlay */
-z-index: -1; /* Make sure the overlay is behind all the content */
+background-color: rgba(0, 0, 0, 0.3); 
+z-index: -1; 
 }
 
 

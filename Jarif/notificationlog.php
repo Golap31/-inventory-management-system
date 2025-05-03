@@ -1,19 +1,19 @@
 <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root"; // Change this to your MySQL username
-$password = ""; // Change this to your MySQL password
-$dbname = "inventorymanagementsystem"; // Change this to your database name
 
-// Create connection
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "inventorymanagementsystem"; 
+
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch data from lossanalysis table
+able
 $sql = "SELECT id, loss_id, notification_type, status, message, sent_at FROM lossanalysis ORDER BY id";
 $result = $conn->query($sql);
 ?>
@@ -113,7 +113,7 @@ $result = $conn->query($sql);
     </table>
 
     <script>
-        // Select all checkbox functionality
+        
         document.getElementById('select-all').addEventListener('change', function() {
             document.querySelectorAll('.row-checkbox').forEach(checkbox => {
                 checkbox.checked = this.checked;
@@ -125,6 +125,6 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-// Close connection
+
 $conn->close();
 ?>

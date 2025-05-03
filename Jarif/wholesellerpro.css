@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@
     padding: 20px;
   }
   
-  /* Container */
+  
   .container {
     max-width: 900px;
     margin: 0 auto;
@@ -22,7 +22,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
   
-  /* Profile Header */
+  
   .profile-header {
     display: flex;
     align-items: center;
@@ -57,14 +57,14 @@
     background-color: #1d4ed8;
   }
   
-  /* Section Headings */
+  
   section h2 {
     font-size: 1.3rem;
     margin-bottom: 15px;
     color: #1f2937;
   }
   
-  /* Info Grid */
+  
   .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -78,7 +78,7 @@
     grid-column: span 2;
   }
   
-  /* About Section */
+ 
   .about {
     margin-bottom: 30px;
   }
@@ -86,7 +86,7 @@
     color: #4b5563;
   }
   
-  /* Action Buttons */
+  
   .action-buttons {
     display: flex;
     gap: 15px;
@@ -113,7 +113,7 @@
     background-color: #dc2626;
   }
   
-  /* Responsive */
+  
   @media (max-width: 768px) {
     .info-grid {
       grid-template-columns: 1fr;
@@ -126,12 +126,12 @@
       width: 100%;
     }
   }
-  /* Styling for the Back to Dashboard Link */
+  
 .back-link {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #4CAF50; /* Green color */
+    background-color: #4CAF50; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -141,11 +141,11 @@
   }
   
   .back-link:hover {
-    background-color: #45a049; /* Darker green when hovered */
+    background-color: #45a049; 
   }
   
   .back-link:active {
-    background-color: #3e8e41; /* Even darker green when clicked */
+    background-color: #3e8e41; 
   }
   
   .back-link:focus {
@@ -153,16 +153,16 @@
   }
 
   
-  /* Apply background image to the entire page */
+ 
 body {
-    background-image: url('bg.webp'); /* Replace with your image path */
-    background-size: cover; /* Makes the image cover the whole screen */
-    background-position: center center; /* Centers the background image */
-    background-attachment: fixed; /* Keeps the background fixed while scrolling */
-    background-repeat: no-repeat; /* Prevents the background from repeating */
+    background-image: url('bg.webp'); 
+    background-size: cover; 
+    background-position: center center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
   }
   
-  /* Optional: You can add a background overlay if you want text to be more readable */
+  
   body::before {
     content: '';
     position: absolute;
@@ -170,8 +170,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black overlay */
-    z-index: -1; /* Make sure the overlay is behind all the content */
+    background-color: rgba(0, 0, 0, 0.3); 
+    z-index: -1; 
   }
   
   

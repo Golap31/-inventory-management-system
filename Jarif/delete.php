@@ -1,63 +1,63 @@
 <?php
-// Database connection settings
-$host = "localhost";
-$username = "root"; // Change this to your MySQL username
-$password = ""; // Change this to your MySQL password
-$database = "inventorymanagementsystem"; // Change this to your database name
 
-// Create database connection
+$host = "localhost";
+$username = "root"; 
+$password = ""; 
+$database = "inventorymanagementsystem"; 
+
+
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if ID is provided
+
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = intval($_GET['id']);
     
-    // Prepare statement to prevent SQL injection
+    
     $stmt = $conn->prepare("DELETE FROM lossanalysis WHERE id = ?");
     $stmt->bind_param("i", $id);
     
-    // Execute the statement
+    
     if ($stmt->execute()) {
-        // Success message
+        
         $message = "Record deleted successfully";
     } else {
-        // Error message
+       
         $message = "Error deleting record: " . $conn->error;
     }
     
-    // Close statement
+   
     $stmt->close();
 } elseif (isset($_POST['selected']) && is_array($_POST['selected']) && count($_POST['selected']) > 0) {
-    // Handle bulk delete from form submission
+    
     $ids = array_map('intval', $_POST['selected']);
     $placeholders = implode(',', array_fill(0, count($ids), '?'));
     
-    // Prepare statement
+    
     $stmt = $conn->prepare("DELETE FROM lossanalysis WHERE id IN ($placeholders)");
     
-    // Bind parameters dynamically
+    
     $types = str_repeat('i', count($ids));
     $stmt->bind_param($types, ...$ids);
     
-    // Execute the statement
+    
     if ($stmt->execute()) {
         $message = count($ids) . " record(s) deleted successfully";
     } else {
         $message = "Error deleting records: " . $conn->error;
     }
     
-    // Close statement
+   
     $stmt->close();
 } else {
     $message = "No record specified for deletion";
 }
 
-// Close connection
+
 $conn->close();
 ?>
 
@@ -109,7 +109,7 @@ $conn->close();
     <a href="dashboard.php" class="btn">Back to Loss Analysis</a>
     
     <script>
-        // Auto redirect after 3 seconds
+       
         setTimeout(function() {
             window.location.href = "dashboard.php";
         }, 30000);
