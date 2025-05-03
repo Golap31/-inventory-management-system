@@ -282,17 +282,7 @@ $locationsCountJson = json_encode(array_values($storageLocations));
             </tbody>
         </table>
         
-        <div class="actions-row">
-            <select name="action" id="bulk-action">
-                <option value="">-- Select Action --</option>
-                <option value="edit">Edit Selected</option>
-                <option value="copy">Copy Selected</option>
-                <option value="delete">Delete Selected</option>
-                <option value="export">Export Selected</option>
-            </select>
-            <button type="button" onclick="applyBulkAction()">Apply</button>
-            <a href="add.php" style="float:right;padding:5px 10px;background-color:#4CAF50;color:white;text-decoration:none;border-radius:3px;">Add New Record</a>
-        </div>
+
     </form>
 
     <div class="chart-container">
@@ -688,52 +678,7 @@ $result = $conn->query($sql);
     
     <button class="add-btn" onclick="openModal()">Add New Record</button>
     
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Batch Code</th>
-                <th>Harvest Date</th>
-                <th>Storage Location</th>
-                <th>Detected Issue</th>
-                <th>Issue Description</th>
-                <th>Reported By</th>
-                <th>Detected Date</th>
-                <th>Expiry Date</th>
-                <th>Alert Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result && $result->num_rows > 0): ?>
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['product_name']; ?></td>
-                        <td><?php echo $row['batch_code']; ?></td>
-                        <td><?php echo $row['harvest_date']; ?></td>
-                        <td><?php echo $row['storage_location']; ?></td>
-                        <td><?php echo $row['detected_issue']; ?></td>
-                        <td><?php echo $row['issue_description']; ?></td>
-                        <td><?php echo $row['reported_by']; ?></td>
-                        <td><?php echo $row['detected_date']; ?></td>
-                        <td><?php echo $row['expiry_date']; ?></td>
-                        <td><?php echo $row['alert_status']; ?></td>
-                        <td>
-                            <button class="actions-btn edit-btn">Edit</button>
-                            <button class="actions-btn copy-btn">Copy</button>
-                            <button class="actions-btn delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="12">No records found</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+    
     
     <!-- Add New Record Modal -->
     <div id="addRecordModal" class="modal">
