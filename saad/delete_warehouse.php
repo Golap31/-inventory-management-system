@@ -19,12 +19,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         exit();
     }
 
-    $stmt->close();
+   
 } else {
     // If ID is invalid or missing
     header("Location: warehouse.php?status=invalid");
     exit();
 }
 
-$conn->close();
-?>
+
