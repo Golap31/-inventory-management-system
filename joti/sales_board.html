@@ -2,89 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sales Input Page</title>
+  <title>Sales Input</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
-    .sidebar {
-      height: 100vh;
-      width: 220px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #333;
-      padding-top: 30px;
-    }
-    .sidebar a {
-      display: block;
-      color: white;
-      padding: 15px;
-      text-decoration: none;
-      font-size: 18px;
-    }
-    .sidebar a:hover {
-      background-color: #575757;
-    }
-    .main-content {
-      margin-left: 240px;
+      background: #f4f4f4;
       padding: 20px;
     }
     .container {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    input[type="text"],
-    input[type="number"],
-    input[type="date"] {
+    input, button {
       width: 100%;
+      margin-top: 10px;
       padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      font-size: 16px;
     }
     button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background-color: #4CAF50;
-      color: white;
+      background: #4CAF50;
+      color: #fff;
       border: none;
-      font-size: 16px;
-      border-radius: 5px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #45a049;
+      background: #45a049;
     }
+    .message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+
     table {
-      width: 95%;
-      margin: auto;
+      width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    table, th, td {
-      border: 1px solid #ddd;
+      margin-top: 30px;
     }
     th, td {
+      border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
     }
@@ -92,160 +55,92 @@
       background-color: #4CAF50;
       color: white;
     }
-    .action-btn {
-      padding: 5px 10px;
-      margin: 2px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .edit-btn {
-      background-color: #ffc107;
-      color: #000;
-    }
-    .delete-btn {
-      background-color: #dc3545;
-      color: #fff;
-    }
   </style>
 </head>
-
 <body>
 
-<div class="sidebar">
-  <!-- <a href="dashboard.html">Dashboard</a>
-  <a href="joti/sales_input.html">Sales Input</a>
-  <a href="logout.html">Log Out</a> -->
+<div class="container">
+  <h2>Sales Entry Form</h2>
+  <form id="salesForm">
+    <input type="text" id="product" name="product" placeholder="Product Name" required>
+    <input type="number" id="quantity" name="quantity" placeholder="Quantity" min="1" required>
+    <input type="number" id="price" name="price" placeholder="Price per Unit ($)" step="0.01" required>
+    <input type="text" id="customer" name="customer" placeholder="Customer Name" required>
+    <input type="date" id="date" name="date" required>
+    <button type="submit">Submit Sale</button>
+    <div id="response" class="message"></div>
+  </form>
 
-</div>
-
-<div class="main-content">
-  <div class="container">
-    <h2>Sales Input Form</h2>
-
-    <form id="salesForm">
-      <label for="product">Product Name:</label>
-      <input type="text" id="product" name="product" required>
-
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" min="1" required>
-
-      <label for="price">Price per Unit ($):</label>
-      <input type="number" id="price" name="price" step="0.01" required>
-
-      <label for="customer">Customer Name:</label>
-      <input type="text" id="customer" name="customer" required>
-
-      <label for="date">Sale Date:</label>
-      <input type="date" id="date" name="date" required>
-
-      <button type="submit">Submit Sale</button>
-    </form>
-  </div>
-
-  <h2 style="text-align: center;">Sales Records</h2>
+  <h2>Sales Records</h2>
   <table id="salesTable">
     <thead>
       <tr>
-        <th>Purchase ID</th>
+        <th>ID</th>
         <th>Product</th>
-        <th>Quantity</th>
-        <th>Price per Unit ($)</th>
-        <th>Total Amount ($)</th>
-        <th>Due Amount ($)</th>
+        <th>Qty</th>
+        <th>Price/Unit ($)</th>
+        <th>Total ($)</th>
+        <th>Due ($)</th>
         <th>Customer</th>
-        <th>Sale Date</th>
-        <th>Actions</th>
+        <th>Date</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Sales entries will appear here -->
-    </tbody>
+    <tbody></tbody>
   </table>
 </div>
 
 <script>
-  let purchaseId = 1; // Start Purchase ID counter
-
-  const salesForm = document.getElementById('salesForm');
-  const salesTableBody = document.querySelector('#salesTable tbody');
-
-  salesForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // Get form values
-    const product = document.getElementById('product').value;
-    const quantity = parseFloat(document.getElementById('quantity').value);
-    const price = parseFloat(document.getElementById('price').value);
-    const customer = document.getElementById('customer').value;
-    const date = document.getElementById('date').value;
-
-    const totalAmount = (quantity * price).toFixed(2);
-    const dueAmount = totalAmount; // For now, due = total
-
-    // 1️⃣ SEND data to server using AJAX (background)
-    const formData = new FormData();
-    formData.append('product', product);
-    formData.append('quantity', quantity);
-    formData.append('price', price);
-    formData.append('customer', customer);
-    formData.append('date', date);
-
-    fetch('save_sales.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.text())
+function loadSales() {
+  fetch('fetch_sales.php')
+    .then(res => res.json())
     .then(data => {
-      console.log('Server response:', data);
-      alert("Sale saved successfully!");
-    })
-    .catch(error => {
-      console.error('Error:', error);
+      const tbody = document.querySelector('#salesTable tbody');
+      tbody.innerHTML = '';
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.id}</td>
+          <td>${row.product_name}</td>
+          <td>${row.quantity}</td>
+          <td>${parseFloat(row.price_per_unit).toFixed(2)}</td>
+          <td>${parseFloat(row.total_amount).toFixed(2)}</td>
+          <td>${parseFloat(row.due_amount).toFixed(2)}</td>
+          <td>${row.customer_name}</td>
+          <td>${row.sale_date}</td>
+        `;
+        tbody.appendChild(tr);
+      });
     });
+}
 
-    // 2️⃣ Update table instantly (frontend)
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-      <td>${purchaseId}</td>
-      <td>${product}</td>
-      <td>${quantity}</td>
-      <td>${price.toFixed(2)}</td>
-      <td>${totalAmount}</td>
-      <td>${dueAmount}</td>
-      <td>${customer}</td>
-      <td>${date}</td>
-      <td>
-        <button class="action-btn edit-btn" onclick="editRow(this)">Edit</button>
-        <button class="action-btn delete-btn" onclick="deleteRow(this)">Delete</button>
-      </td>
-    `;
+document.getElementById('salesForm').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-    salesTableBody.appendChild(newRow);
+  const form = e.target;
+  const formData = new FormData(form);
+  const responseBox = document.getElementById('response');
 
-    purchaseId++; // Increment ID for next sale
-    salesForm.reset();
+  fetch('save_sales.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    responseBox.textContent = data;
+    responseBox.className = 'message success';
+    responseBox.style.display = 'block';
+    form.reset();
+    loadSales(); // reload table
+  })
+  .catch(err => {
+    responseBox.textContent = "An error occurred. Please try again.";
+    responseBox.className = 'message error';
+    responseBox.style.display = 'block';
   });
+});
 
-  function deleteRow(btn) {
-    const row = btn.parentElement.parentElement;
-    salesTableBody.removeChild(row);
-  }
-
-  function editRow(btn) {
-    const row = btn.parentElement.parentElement;
-    const cells = row.querySelectorAll('td');
-
-    // Fill form with existing data
-    document.getElementById('product').value = cells[1].innerText;
-    document.getElementById('quantity').value = cells[2].innerText;
-    document.getElementById('price').value = cells[3].innerText;
-    document.getElementById('customer').value = cells[6].innerText;
-    document.getElementById('date').value = cells[7].innerText;
-
-    // Delete the row being edited
-    salesTableBody.removeChild(row);
-  }
+// Initial load
+loadSales();
 </script>
 
 </body>
