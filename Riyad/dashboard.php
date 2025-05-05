@@ -45,7 +45,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-image: url('Farm.jpeg');
+            background-image: url('Plants.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
