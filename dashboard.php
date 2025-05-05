@@ -144,7 +144,9 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <ul>
-    
+      <!--Rose-->
+      <li><a href="crud_app\products.php">🏢 Products</a></li>
+      <li><a href="crud_app\harvest\harvestbatch.php">🏢 Harvest Products</a></li>
 
       <!-- nafij -->
       <li><a href="nafis/inventorymanagementsystem/shipment.php">🚚 Shipment Tracking</a></li>
