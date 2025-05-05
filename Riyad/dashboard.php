@@ -76,12 +76,12 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             font-size: 14px;
         }
         button {
-            background-color: #007bff;
+            background-color:rgb(23, 163, 28);
             color: white;
             border: none;
             cursor: pointer;
         }
-        button:hover { background-color: #0056b3; }
+        button:hover { background-color:rgb(4, 128, 8); }
         .search-form {
             margin-bottom: 20px;
         }
