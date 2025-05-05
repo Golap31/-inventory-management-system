@@ -12,10 +12,13 @@
     <a href="edit.php" class="btn btn-primary mb-3">➕ Add New Warehouse</a>
 
     <!-- Search Form -->
-    <form method="GET" class="mb-4 d-flex">
-        <input type="text" name="search" class="form-control me-2" placeholder="Search by warehouse name..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
-        <button type="submit" class="btn btn-secondary">🔍 Search</button>
-    </form>
+    <!-- Search Form -->
+<form method="GET" class="mb-4 d-flex">
+    <input type="text" name="search" class="form-control me-2" placeholder="Search by warehouse name..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+    <button type="submit" class="btn btn-secondary me-2">🔍 Search</button>
+    <a href="warehouse_list.php" class="btn btn-outline-secondary">🔄 Reset</a>
+</form>
+
 
     <table class="table table-bordered table-hover table-striped">
         <thead class="table-dark">
