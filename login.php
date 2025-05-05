@@ -80,7 +80,7 @@ if (isset($_POST["submitPassword"])) {
         <div class="links">
             
             <p><a href="register.php">Need an account? Sign up here</a></p>
-            <p><a href="dashboard.html">Go to Dashboard</a></p>
+            <p><a href="dashboard.php">Go to Dashboard</a></p>
         </div>
     </div>
 

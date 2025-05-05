@@ -157,7 +157,6 @@
       <li><a href="saad/warehouse.php">🏢 Warehouse Management</a></li>
       
       <!-- joti -->
-      <!-- <li><a href="purchase_view.php">📦 Purchase Records</a></li> -->
       <li><a href="purchase_view.php">📦 Purchase Records</a></li>
 
       <!-- loss record page -->
