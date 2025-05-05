@@ -54,9 +54,9 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             padding: 20px;
         }
         h1 {
-            color: white;
+            color: #25853a;
             margin-top: 40px;
-            border-left: 5px solid #007bff;
+            border-left: 5px solid rgb(48, 167, 74);
             padding-left: 10px;
         }
         form {
