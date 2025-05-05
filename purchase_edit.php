@@ -46,40 +46,139 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title><?= $edit ? 'Edit Purchase' : 'Add Purchase' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://t3.ftcdn.net/jpg/02/47/37/32/240_F_247373254_tI8NE7An2wy92KT4vovz37SCXnRQe7CO.jpg') no-repeat center center/cover;
+            color: white;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 50px;
+            z-index: 1000;
+        }
+        .navbar .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #d32f2f;
+            color: white;
+            height: 100vh;
+            padding-top: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .dashboard-content {
+            margin-left: 270px;
+        
+            margin-top: 80px;
+            padding: 20px;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            max-width: 600px;
+        }
+    </style>
 </head>
-<body class="container mt-5">
+<body>
 
-    <h2 class="mb-4"><?= $edit ? 'Edit Purchase' : 'Add Purchase' ?></h2>
-    <form method="POST" class="border p-4 shadow-sm rounded">
-        <input type="hidden" name="edit_mode" value="<?= $edit ? '1' : '0' ?>">
+<!-- Navbar -->
+<div class="navbar">
+    <div class="profile d-flex align-items-center">
+        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User">
+        <h4 class="mb-0">Inventory</h4>
+    </div>
+</div>
 
-        <div class="mb-3">
-            <label for="Purchase_ID" class="form-label">Purchase ID</label>
-            <input type="text" class="form-control" id="Purchase_ID" name="Purchase_ID" value="<?= $purchaseID ?>" <?= $edit ? 'readonly' : '' ?> required>
-        </div>
+<!-- Sidebar -->
+<div class="sidebar">
+    <ul>
+        <li><a href="saad/warehouse.php">Inventory</a></li>
+        <li><a href="saad/warehouse.php">Warehouse</a></li>
+        <li><a href="joti/distribution_record.html">Sales & Distribution</a></li>
+        <li><a href="jotirmoy/view.php">Sales Board</a></li>
+        <li><a href="Jarif/dashboard.php">Loss Analysis</a></li>
+        <li><a href="Riyad/dashboard.php">Preventive Measures</a></li>
+        <li><a href="crud_app/products.php">Products</a></li>
+        <li><a href="crud_app/harvest/harvestbatch.php">Harvest</a></li>
+        <li><a href="nafis/inventorymanagementsystem/monitoring.php">Real Time Monitoring</a></li>
+        <li><a href="nafis/inventorymanagementsystem/shipment.php">Shipment</a></li>
+        <li><a href="home.html">Logout</a></li>
+    </ul>
+</div>
 
-        <div class="mb-3">
-            <label for="Toal_Amount" class="form-label">Total Amount</label>
-            <input type="number" class="form-control" id="Toal_Amount" name="Toal_Amount" value="<?= $Toal_Amount ?>" required>
-        </div>
+<!-- Content -->
+<div class="dashboard-content">
+    <div class="form-container">
+        <h2 class="mb-4"><?= $edit ? 'Edit Purchase' : 'Add Purchase' ?></h2>
+        <form method="POST">
+            <input type="hidden" name="edit_mode" value="<?= $edit ? '1' : '0' ?>">
 
-        <div class="mb-3">
-            <label for="Paid_Amount" class="form-label">Paid Amount</label>
-            <input type="number" class="form-control" id="Paid_Amount" name="Paid_Amount" value="<?= $Paid_Amount ?>" required>
-        </div>
+            <div class="mb-3">
+                <label for="Purchase_ID" class="form-label">Purchase ID</label>
+                <input type="text" class="form-control" id="Purchase_ID" name="Purchase_ID" value="<?= $purchaseID ?>" <?= $edit ? 'readonly' : '' ?> required>
+            </div>
 
-        <div class="mb-3">
-            <label for="Due_Amount" class="form-label">Due Amount</label>
-            <input type="number" class="form-control" id="Due_Amount" name="Due_Amount" value="<?= $Due_Amount ?>" required>
-        </div>
+            <div class="mb-3">
+                <label for="Toal_Amount" class="form-label">Total Amount</label>
+                <input type="number" class="form-control" id="Toal_Amount" name="Toal_Amount" value="<?= $Toal_Amount ?>" required>
+            </div>
 
-        <div class="mb-3">
-            <label for="Product_Purchased" class="form-label">Product Purchased</label>
-            <input type="number" class="form-control" id="Product_Purchased" name="Product_Purchased" value="<?= $Product_Purchased ?>" required>
-        </div>
+            <div class="mb-3">
+                <label for="Paid_Amount" class="form-label">Paid Amount</label>
+                <input type="number" class="form-control" id="Paid_Amount" name="Paid_Amount" value="<?= $Paid_Amount ?>" required>
+            </div>
 
-        <button type="submit" class="btn btn-primary"><?= $edit ? 'Update' : 'Submit' ?></button>
-        <a href="purchase_view.php" class="btn btn-secondary">Cancel</a>
-    </form>
+            <div class="mb-3">
+                <label for="Due_Amount" class="form-label">Due Amount</label>
+                <input type="number" class="form-control" id="Due_Amount" name="Due_Amount" value="<?= $Due_Amount ?>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Product_Purchased" class="form-label">Product Purchased</label>
+                <input type="number" class="form-control" id="Product_Purchased" name="Product_Purchased" value="<?= $Product_Purchased ?>" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><?= $edit ? 'Update' : 'Submit' ?></button>
+            <a href="purchase_view.php" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
