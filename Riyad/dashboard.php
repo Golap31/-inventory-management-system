@@ -1,7 +1,6 @@
 <?php
 $conn = new mysqli("localhost", "root", "", "inventorymanagementsystem");
 
-
 if (isset($_GET['delete_preventive'])) {
     $conn->query("DELETE FROM preventive_measures WHERE id = {$_GET['delete_preventive']}");
 }
@@ -9,18 +8,19 @@ if (isset($_GET['delete_improvement'])) {
     $conn->query("DELETE FROM improvement_updates WHERE id = {$_GET['delete_improvement']}");
 }
 
-
 $edit_preventive = isset($_GET['edit_preventive']) ? $conn->query("SELECT * FROM preventive_measures WHERE id = {$_GET['edit_preventive']}")->fetch_assoc() : null;
 $edit_improvement = isset($_GET['edit_improvement']) ? $conn->query("SELECT * FROM improvement_updates WHERE id = {$_GET['edit_improvement']}")->fetch_assoc() : null;
 
-
 if (isset($_POST['update_preventive'])) {
     $conn->query("UPDATE preventive_measures SET product_id='{$_POST['product_id']}', batch_id='{$_POST['batch_id']}', farmer_name='{$_POST['farmer_name']}', farmer_id='{$_POST['farmer_id']}', reason='{$_POST['reason']}', suggestion='{$_POST['suggestion']}' WHERE id={$_POST['id']}");
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
+    exit;
 }
 if (isset($_POST['update_improvement'])) {
     $conn->query("UPDATE improvement_updates SET product_id='{$_POST['product_id']}', batch_id='{$_POST['batch_id']}', farmer_name='{$_POST['farmer_name']}', farmer_id='{$_POST['farmer_id']}', update_status='{$_POST['update_status']}' WHERE id={$_POST['id']}");
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
+    exit;
 }
-
 
 if (isset($_POST['submit_preventive'])) {
     $conn->query("INSERT INTO preventive_measures (product_id, batch_id, farmer_name, farmer_id, reason, suggestion) VALUES ('{$_POST['product_id']}', '{$_POST['batch_id']}', '{$_POST['farmer_name']}', '{$_POST['farmer_id']}', '{$_POST['reason']}', '{$_POST['suggestion']}')");
@@ -28,7 +28,6 @@ if (isset($_POST['submit_preventive'])) {
 if (isset($_POST['submit_improvement'])) {
     $conn->query("INSERT INTO improvement_updates (product_id, batch_id, farmer_name, farmer_id, update_status) VALUES ('{$_POST['product_id']}', '{$_POST['batch_id']}', '{$_POST['farmer_name']}', '{$_POST['farmer_id']}', '{$_POST['update_status']}')");
 }
-
 
 $search_preventive = $_GET['search_preventive'] ?? '';
 $search_improvement = $_GET['search_improvement'] ?? '';
@@ -43,9 +42,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
     <meta charset="UTF-8">
     <title>PHLI Dashboard</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f4f6f9;
@@ -80,9 +77,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             border: none;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
+        button:hover { background-color: #0056b3; }
         .search-form {
             margin-bottom: 20px;
         }
@@ -91,7 +86,6 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             display: inline-block;
             margin-right: 10px;
         }
-
         .btn-edit, .btn-delete {
             padding: 5px 10px;
             font-size: 13px;
@@ -99,24 +93,10 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             color: white;
             margin-right: 5px;
         }
-
-        .btn-edit {
-            background-color: #28a745;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-        }
-
-        .btn-edit:hover {
-            background-color: #218838;
-        }
-
-        .btn-delete:hover {
-            background-color: #c82333;
-        }
-
-
+        .btn-edit { background-color: #28a745; }
+        .btn-delete { background-color: #dc3545; }
+        .btn-edit:hover { background-color: #218838; }
+        .btn-delete:hover { background-color: #c82333; }
         table {
             width: 100%;
             background-color: #fff;
@@ -136,11 +116,8 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
         .actions a {
             margin-right: 10px;
             text-decoration: none;
-            color:rgb(255, 255, 255);
+            color: white;
             font-size: 16px;
-        }
-        .actions a:hover {
-            color:rgb(255, 255, 255);
         }
         @media (max-width: 768px) {
             table, form {
@@ -245,8 +222,8 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
                 <td><?= $row['update_status'] ?></td>
                 <td><?= $row['created_at'] ?></td>
                 <td class="actions">
-                    <a href="?edit_preventive=<?= $row['id'] ?>" class="btn-edit">Edit</a>
-                    <a href="?delete_preventive=<?= $row['id'] ?>" class="btn-delete" onclick="return confirm('Delete this record?')">Delete</a>
+                    <a href="?edit_improvement=<?= $row['id'] ?>" class="btn-edit">Edit</a>
+                    <a href="?delete_improvement=<?= $row['id'] ?>" class="btn-delete" onclick="return confirm('Delete this record?')">Delete</a>
                 </td>
             </tr>
         <?php endwhile; ?>
