@@ -76,12 +76,12 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             font-size: 14px;
         }
         button {
-            background-color:rgb(23, 163, 28);
+            background-color: #4CBB17;
             color: white;
             border: none;
             cursor: pointer;
         }
-        button:hover { background-color:rgb(4, 128, 8); }
+        button:hover { background-color: #32CD32; }
         .search-form {
             margin-bottom: 20px;
         }
@@ -114,7 +114,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             text-align: left;
         }
         table th {
-            background-color: #007bff;
+            background-color: #448e44;
             color: white;
         }
         .actions a {
