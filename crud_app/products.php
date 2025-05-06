@@ -1,7 +1,9 @@
 <?php include('header.php'); ?>
 <?php include('dbcon.php'); ?>
         <div class="header">
-        <h2>ALL Products </h2>
+        <h2>All Products</h2>
+
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">ADD PRODUCTS</button>
         </div>
     <table class="table table-hover table-bordered table-striped">
