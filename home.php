@@ -55,7 +55,7 @@
         <a class="navbar-brand" href="#">Inventory & Loss Mgmt</a>
         <div class="d-flex">
             <a href="login.php" class="btn btn-outline-success me-2">Login</a>
-            <a href="register.php" class="btn btn-success">Register</a>
+            <a href="registration.php" class="btn btn-success">Register</a>
         </div>
     </div>
 </nav>
