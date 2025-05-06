@@ -139,5 +139,4 @@ if (!$result) {
 </body>
 </html>
 
-<?php $conn->close(); ?>
- <!-- comment  -->
+<?php $conn->close(); ?> 
