@@ -45,7 +45,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-image: url('Farm.jpeg');
+            background-image: url('Plants.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -54,9 +54,9 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             padding: 20px;
         }
         h1 {
-            color: white;
+            color: #25853a;
             margin-top: 40px;
-            border-left: 5px solid #007bff;
+            border-left: 5px solid rgb(48, 167, 74);
             padding-left: 10px;
         }
         form {
@@ -76,12 +76,12 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             font-size: 14px;
         }
         button {
-            background-color: #007bff;
+            background-color: #4CBB17;
             color: white;
             border: none;
             cursor: pointer;
         }
-        button:hover { background-color: #0056b3; }
+        button:hover { background-color: #32CD32; }
         .search-form {
             margin-bottom: 20px;
         }
@@ -114,7 +114,7 @@ $improvement = $conn->query("SELECT * FROM improvement_updates WHERE farmer_name
             text-align: left;
         }
         table th {
-            background-color: #007bff;
+            background-color: #448e44;
             color: white;
         }
         .actions a {
