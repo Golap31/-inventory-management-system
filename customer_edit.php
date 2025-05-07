@@ -127,29 +127,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Sidebar -->
 <div class="sidebar">
     <ul>
-        <!--Rose-->
-      <li><a href="crud_app\products.php">🏢 Products</a></li>
-      <li><a href="crud_app\harvest\harvestbatch.php">🏢 Harvest Products</a></li>
+       <!--Rose-->
+      <li><a href="crud_app\products.php">🏢 Inventory Tracking</a></li>
+      
 
       <!-- nafij -->
-      <li><a href="nafis/inventorymanagementsystem/shipment.php">🚚 Shipment Tracking</a></li>
       <li><a href="nafis/inventorymanagementsystem/monitoring.php">📦Real Time Monitoring</a></li>
 
+      <li><a href="purchase_view.php">📦 Sales and Distribution</a></li>
+
+      <li><a href="nafis/inventorymanagementsystem/shipment.php">🚚 Loss recording</a></li>
+
+      <li><a href="Jarif/dashboard.php">📊Loss Analysis</a></li>
+
+      <li><a href="Riyad/dashboard.php">Prevention and Improviment</a></li>
+
+      <!-- joti -->
+      <!-- <li><a href="purchase_view.php">📦 Sales and Distribution</a></li>
+      <li><a href="distribution_view.php">📦 Distribution</a></li> -->
 
       <!-- Saad -->
       <li><a href="saad/warehouse.php">🏢 Warehouse Management</a></li>
       <li><a href="warehouse_view.php">🏢 Inventory</a></li>
       
-      <!-- joti -->
-      <li><a href="purchase_view.php">📦 Sales</a></li>
-      <li><a href="distribution_view.php">📦 Distribution</a></li>
+      
       <li><a href="customer_view.php">📦 Add Customer</a></li>
 
-      <!-- loss record page -->
-      <li><a href="Jarif/dashboard.php">📊Loss Analysis</a></li>
-
-      <!-- riyad -->
-      <li><a href="Riyad/dashboard.php">Preventive Measures</a></li>
 
       
       <li><a href="home.php">Logout</a></li>
