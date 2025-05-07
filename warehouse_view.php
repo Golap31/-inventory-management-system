@@ -177,7 +177,7 @@
   <!-- Dashboard Content -->
   <div class="dashboard">
 <div class="container mt-5">
-    <h2 class="mb-4">📦 Warehouse List</h2>
+    <h2 class="mb-4">📦 Inventory</h2>
     <a href="edit.php" class="btn btn-primary mb-3">➕ Add New Warehouse</a>
 
     <!-- Search Form -->
