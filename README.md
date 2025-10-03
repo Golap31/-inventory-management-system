@@ -12,4 +12,4 @@ Loss recording at each stage (harvesting, storage, handling, transportation).
 Analysis of loss causes (physical damage, spoilage, etc.) and automated alerts for expiring produce.
 Implementation of preventative measures and Tracking the improvements. 
 
-This project was part of the Database Management Course CSE303 . I was the leader of this project and the project consisted of equal contributions from seven people
+This project was part of the Database Management Course CSE303 . I was the leader of this project and the project consisted of  contributions from seven people
